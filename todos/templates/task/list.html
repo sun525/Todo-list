@@ -1,0 +1,48 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+    <h1>任务列表</h1>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>名称</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for todo in todos %}
+                <tr>
+                    <td>{{ todo.text }}</td>
+                    {# 展示complated信息 #}
+                    <td>
+                         {% if todo.completed %}
+                            <form action="/task/update/{{ todo.id }}/" method="post">
+                                <input type="submit" value="已完成">
+                                {% csrf_token %}
+                            </form>
+                        {% else %}
+                            <form action="/task/update/{{ todo.id }}/" method="post">
+                                <input type="submit" value="未完成">
+                                {% csrf_token %}
+                            </form>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                       <form action="/task/delete/{{ todo.id }}/" method="post">
+                            <input type="submit" value="删除">
+                            {% csrf_token %}
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{#    <h3><a  href="/task/create/">新建任务</a></h3>#}
+
+
+
+{% endblock content %}

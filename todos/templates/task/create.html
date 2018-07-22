@@ -1,0 +1,9 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+    <form action="/task/create/" method="post">
+        <input type="text" name="title">
+        <input type="submit" value="新建">
+        {% csrf_token %}
+    </form>
+
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+    <form class="form-horizontal" action="/user/login/" method="post">
+{#        用户登录信息#}
+        <div class="form-group">
+            <label class="col-sm-1">用户名:</label>
+            <div class="col-sm-6">
+                <input class="form-control" type="text" name="username" placeholder="username">
+            </div>
+        </div>
+{#         密码#}
+        <div class="form-group">
+            <label class="col-sm-1">密码:</label>
+            <div class="col-sm-6">
+                <input class="form-control" type="password" name="password" placeholder="password">
+                <span class="text-danger">
+                    {% if msg %}
+                        {{ msg }}
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+{#          提交登录#}
+        <div class="form-group">
+            <div class="col-sm-6">
+                <input class="btn-primary" type="submit" value="登录">
+            </div>
+        </div>
+        {% csrf_token %}
+    </form>
+{% endblock %}
+
